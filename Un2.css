@@ -1,0 +1,263 @@
+/* ===== 全局样式更新 ===== */
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3a0ca3;
+  --accent-color: #4cc9f0;
+  --text-dark: #2b2d42;
+  --text-medium: #4a4e69;
+  --text-light: #8d99ae;
+  --bg-light: #f8f9fa;
+  --bg-white: #ffffff;
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --border-radius: 8px;
+  --spacing-standard: 20px;  /* 添加统一的间距变量 */
+}
+
+/* ===== 基础布局优化 ===== */
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+  color: var(--text-medium);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ===== 主容器优化 ===== */
+.main-container {
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr;
+  gap: var(--spacing-standard);
+  width: 98%;
+  max-width: 2800px;
+  margin: var(--spacing-standard) auto;
+  padding: 0;
+  min-height: calc(100vh - 140px);
+}
+
+.left-container, 
+.right-container,
+.center-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-standard);
+}
+
+/* ===== 图表卡片优化 ===== */
+.chart-container {
+  background: var(--bg-white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  flex: 1;
+  min-height: 280px;
+  padding: var(--spacing-standard);  /* 使用统一的内边距 */
+}
+
+/* 左右列的图表 */
+.left-container .chart-container,
+.right-container .chart-container {
+  flex: 1 1 calc((100% - var(--spacing-standard) * 2) / 3);
+  height: calc((100vh - 170px) / 3);
+}
+
+/* 中间列的图表 */
+.center-container .chart-container {
+  flex: 1 1 calc((100% - var(--spacing-standard)) / 2);
+  height: calc((100vh - 170px) / 2);
+}
+
+.chart-container:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.chart-container > div {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+}
+
+/* ===== 标题区域优化 ===== */
+.global-title {
+  width: 100%;
+  padding: var(--spacing-standard);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  margin-bottom: var(--spacing-standard);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  /* 添加换行，当空间不足时让时间信息换行显示 */
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+  /* 确保有足够的空间 */
+  box-sizing: border-box; 
+}
+
+.time-info {
+  font-size: 1rem;
+  padding: 8px 16px;
+  /* 移除不必要的定位和层级设置 */
+  position: static; 
+  z-index: auto;
+  /* 让时间信息宽度自适应 */
+  min-width: auto; 
+  white-space: normal; 
+}
+
+/* ===== 图表内容区域优化 ===== */
+.chart-title-desc {
+  padding: 12px 15px 8px;
+}
+
+.chart-title-desc h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.chart-title-desc p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* ===== 响应式优化 ===== */
+@media (max-width: 1200px) {
+  .main-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .left-container .chart-container,
+  .right-container .chart-container,
+  .center-container .chart-container {
+    height: auto;
+    min-height: 320px;
+  }
+  
+  .time-info {
+    font-size: 0.95rem;
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .global-title {
+    flex-direction: column;
+    padding: 15px;
+  }
+  
+  .time-info {
+    margin: 10px 0 0;
+    width: 90%;
+    min-width: auto;
+  }
+  
+  .chart-container > div {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chart-container {
+    min-height: 280px;
+  }
+}
+#pyramidChart {
+            width: 100%;
+            height: 400px;
+            display: none;
+            margin-top: 20px;}
+.data-source {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+ html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .global-title {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px;
+            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            color: white;
+            margin-bottom: 10px;
+        }
+        .main-container {
+            min-height: calc(100vh - 120px);
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1fr;
+            gap: 15px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .left-container, .center-container, .right-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .chart-container {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 10px;
+            min-height: 300px;
+            margin-bottom: 15px;
+        }
+        .chart-box {
+            width: 100%;
+            height: 100%;
+            min-height: 280px;
+        }
+        .map-container {
+            position: relative;
+            height: 100%;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+        #chart {
+            flex: 1;
+            min-height: 300px;
+            transition: height 0.3s ease;
+        }
+        #pyramidChart {
+            height: 0;
+            overflow: hidden;
+            transition: height 0.3s ease;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+        #pyramidChart.expanded {
+            height: 150px;
+        }
+        #chart.with-pyramid {
+            height: calc(100% - 150px);
+        }
+        
+        @media screen and (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+            .chart-container {
+                min-height: 350px;
+            }
+        }
