@@ -28,8 +28,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-<<<<<<< HEAD
           publish_dir: ./dist  # 根据你的项目调整输出目录
-=======
-          publish_dir: ./dist  # 根据你的项目调整输出目录
->>>>>>> 1f17f38ee703b2e81e5769702fc0c60123f690e1
